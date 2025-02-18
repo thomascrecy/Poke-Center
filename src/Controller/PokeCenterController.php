@@ -8,10 +8,10 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class PokeCenterController extends AbstractController
 {
-    #[Route('/poke/center', name: 'app_poke_center')]
+    #[Route('/', name: 'app_poke_center')]
     public function index(): Response
     {
-        return $this->render('poke_center/index.html.twig', [
+        return $this->render('poke_center/test-index.html.twig', [
             'controller_name' => 'PokeCenterController',
         ]);
     }
