@@ -11,7 +11,7 @@ final class PokeCenterController extends AbstractController
     #[Route('/', name: 'app_poke_center')]
     public function index(): Response
     {
-        return $this->render('poke_center/test-index.html.twig', [
+        return $this->render('poke_center/index.html.twig', [
             'controller_name' => 'PokeCenterController',
         ]);
     }
