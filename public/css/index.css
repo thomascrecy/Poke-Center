@@ -52,3 +52,9 @@ header {
 .navbar .nav-links ul li.active a {
   color: red;
 }
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
