@@ -38,11 +38,10 @@ class Article
     /**
      * @var Collection<int, Type>
      */
-    #[ORM\OneToMany(targetEntity: Type::class, mappedBy: 'article_id')]
+    #[ORM\ManyToMany(targetEntity: Type::class, inversedBy: 'articles')]
     private Collection $types;
 
-    #[ORM\ManyToOne(inversedBy: 'article_id')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\OneToOne(mappedBy: 'article_id', cascade: ['persist', 'remove'])]
     private ?Stock $stock = null;
 
     /**
@@ -146,7 +145,6 @@ class Article
     {
         if (!$this->types->contains($type)) {
             $this->types->add($type);
-            $type->setArticleId($this);
         }
 
         return $this;
@@ -154,12 +152,7 @@ class Article
 
     public function removeType(Type $type): static
     {
-        if ($this->types->removeElement($type)) {
-            // set the owning side to null (unless already changed)
-            if ($type->getArticleId() === $this) {
-                $type->setArticleId(null);
-            }
-        }
+        $this->types->removeElement($type);
 
         return $this;
     }
@@ -169,8 +162,13 @@ class Article
         return $this->stock;
     }
 
-    public function setStock(?Stock $stock): static
+    public function setStock(Stock $stock): static
     {
+        // set the owning side of the relation if necessary
+        if ($stock->getArticleId() !== $this) {
+            $stock->setArticleId($this);
+        }
+
         $this->stock = $stock;
 
         return $this;

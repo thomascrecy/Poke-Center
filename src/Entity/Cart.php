@@ -15,15 +15,15 @@ class Cart
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\OneToOne(inversedBy: 'cart', cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $author_id = null;
+
     /**
      * @var Collection<int, Article>
      */
     #[ORM\ManyToMany(targetEntity: Article::class, inversedBy: 'carts')]
     private Collection $article_id;
-
-    #[ORM\OneToOne(inversedBy: 'cart', cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?User $author_id = null;
 
     public function __construct()
     {
@@ -33,6 +33,18 @@ class Cart
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getAuthorId(): ?User
+    {
+        return $this->author_id;
+    }
+
+    public function setAuthorId(User $author_id): static
+    {
+        $this->author_id = $author_id;
+
+        return $this;
     }
 
     /**
@@ -55,18 +67,6 @@ class Cart
     public function removeArticleId(Article $articleId): static
     {
         $this->article_id->removeElement($articleId);
-
-        return $this;
-    }
-
-    public function getAuthorId(): ?User
-    {
-        return $this->author_id;
-    }
-
-    public function setAuthorId(User $author_id): static
-    {
-        $this->author_id = $author_id;
 
         return $this;
     }
