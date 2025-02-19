@@ -5,10 +5,64 @@
 <head>
     <meta charset="UTF-8">
     <title>Page non trouvée</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #FF6347;
+        }
+
+        p {
+            font-size: 1.5rem;
+            color: #555;
+        }
+
+        .image-container {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-container span {
+            font-size: 28rem;
+            color: #000;
+            margin: 0 20px;
+        }
+
+        img {
+            width: 400px;
+            height: auto;
+        }
+
+        a {
+            font-size: 2rem;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <h1>404 - Page non trouvée</h1>
-    <p>Désolé, la page que vous recherchez n'existe pas.</p>
-    <a href="{{ path('app_poke_center') }}">Retour à l'accueil</a>
+    <h1>Sorry</h1>
+    <div class="image-container">
+        <span>4</span>
+        <img src="{{ asset('images/ronflex.png') }}" alt="Pokémon not found">
+        <span>4</span>
+    </div>
+    <p>Pokémon not found</p>
+    <a href="{{ path('app_poke_center') }}">Retourner au pokécenter</a>
 </body>
 </html>
