@@ -6,13 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-final class PokeCenterController extends AbstractController
+final class LoginController extends AbstractController
 {
-    #[Route('/', name: 'app_poke_center')]
+    #[Route('/login', name: 'app_login')]
     public function index(): Response
     {
-        return $this->render('poke_center/index.html.twig', [
-            'controller_name' => 'PokeCenterController',
+        return $this->render('login/index.html.twig', [
+            'controller_name' => 'LoginController',
         ]);
     }
 }
