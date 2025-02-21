@@ -5,7 +5,7 @@
 	<div class="nav-links">
 		<ul>
 			<li class="{% if app.request.getPathInfo() == '/pokemons' %}active{% endif %}">
-				<a href="/pokemons">
+				<a href="/articles">
 					<img src="/icons/pikachu.png" alt="Pokémons" class="nav-icon" style="width: auto; height: 30px; margin-right: 3px; vertical-align: middle;">Pokémons
 				</a>
 			</li>
@@ -14,14 +14,14 @@
 					<img src="/icons/item_0017.png" alt="item" class="nav-icon" style="width: auto; height: 30px; margin-right: 3px; vertical-align: middle;">Objets
 				</a>
 			</li>
-			{# <li class="{% if app.request.getPathInfo() == '/balls' %}active{% endif %}">
-			                <a href="/balls">
-			                    <img src="/icons/item_0004.png" alt="balls" class="nav-icon" style="width: auto; height: 30px; margin-right: 3px; vertical-align: middle;">Pokéballs
-			                </a>
-			            </li> #}
-			<li class="{% if app.request.getPathInfo() == '/eggs' %}active{% endif %}">
-				<a href="/eggs">
-					<img src="/images/egg.png" alt="egg" class="nav-icon" style="width: auto; height: 30px; margin-right: 3px; vertical-align: middle;">Oeufs
+			<li class="{% if app.request.getPathInfo() == '/sell' %}active{% endif %}">
+				<a href="/sell">
+					<img src="/images/sell.png" alt="egg" class="nav-icon" style="width: auto; height: 30px; margin-right: 3px; vertical-align: middle;"> Vendre
+				</a>
+			</li>
+			<li class="{% if app.request.getPathInfo() == '/cart' %}active{% endif %}">
+				<a href="/cart">
+					<img src="/images/cart.png" alt="egg" class="nav-icon" style="width: auto; height: 30px; margin-right: 3px; vertical-align: middle;"> Panier
 				</a>
 			</li>
 			<li class="{% if app.request.getPathInfo() == '/login' %}active{% endif %}">

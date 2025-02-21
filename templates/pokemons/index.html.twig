@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Poké Center</title>
+  <title>Poké Center - Articles</title>
   <link rel="icon" type="images/favicon.ico" href="/images/favicon.ico">
   <link rel="stylesheet" href="css/index.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,13 +37,15 @@
                   const sprite = `https://img.pokemondb.net/sprites/brilliant-diamond-shining-pearl/normal/${data.name}.png`;
                   
                   const price = (Math.random() * 2000000).toFixed(0);
+                  const formattedPrice = Number(price).toLocaleString();
                   
                   const pokemonHTML = `
                       <a href="/">
                           <div class="image-container">
                               <img src="${sprite}" alt="${name}">
                           </div>
-                          <p>${name} : ${price}$</p>
+                          <p>${name} :</p>
+                          <p>${formattedPrice} $</p>
                       </a>
                   `;
                   
@@ -54,5 +56,9 @@
           }
       });
   </script>
+
+    <footer>
+        {% include 'footer.html.twig' %}
+    </footer>
 </body>
 </html>

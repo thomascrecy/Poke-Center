@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Fonction pour récupérer un Pokémon aléatoire avec son nom en anglais et en français
     async function getRandomPokemon() {
-        const randomId = Math.floor(Math.random() * 151) + 1; // Il y a 898 Pokémon (Gen 1 à 8)
+        const randomId = Math.floor(Math.random() * 151) + 1;
 
         // Récupère les infos du Pokémon
         const responsePokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${randomId}`);

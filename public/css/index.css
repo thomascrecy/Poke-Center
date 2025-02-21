@@ -48,6 +48,7 @@ footer {
   font-weight: bold;
   text-decoration: none;
   color: white;
+  font-size: 20px;
 }
 
 .navbar .logo {
@@ -178,6 +179,12 @@ content p {
   font-size: 1.2em;
 }
 
+main p {
+  color: black;
+  font-weight: normal;
+  font-size: 1.2em;
+}
+
 .hero {
   padding: 50px;
   color: black;
@@ -248,4 +255,23 @@ content p {
   font-weight: bold;
   margin-top: 10px;
   text-transform: capitalize;
+}
+
+.item-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.item-card {
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  width: 200px;
+}
+
+.item-card img {
+  width: 100px;
+  height: 100px;
 }
