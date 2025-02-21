@@ -8,7 +8,7 @@ framework:
 
     #esi: true
     #fragments: true
-    error_controller: 'App\Controller\ErrorController::notFound'
+    #error_controller: 'App\Controller\ErrorController::notFound'
     
 when@test:
     framework:

@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Poké Center - Vendre</title>
+		<title>Poké Center - Panier</title>
 		<link rel="icon" type="images/favicon.ico" href="/images/favicon.ico">
 		<link rel="stylesheet" href="css/index.css">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,7 +18,17 @@
 			<h1>
 				Sell Page
 			</h1>
+
+            {{ form_start(form) }}
+                {{ form_row(form.name) }}
+                {{ form_row(form.description) }}
+                {{ form_row(form.price) }}
+                {{ form_row(form.imageFile) }}
+                <button type="submit">Vendre l'article</button>
+            {{ form_end(form) }}
+
 		</content>
+
 		<footer>
 			{% include 'footer.html.twig' %}
 		</footer>
