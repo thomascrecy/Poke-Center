@@ -2,17 +2,24 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-final class AccountController extends AbstractController
+class AccountController extends AbstractController
 {
-    #[Route('/account', name: 'app_account')]
-    public function index(): Response
+    #[Route('/profile', name: 'Profile')]
+    #[IsGranted("IS_AUTHENTICATED_FULLY")] 
+    public function index(EntityManagerInterface $entityManager): Response
     {
+        
+        $user = $this->getUser();
+
         return $this->render('account/index.html.twig', [
-            'controller_name' => 'AccountController',
+            'user' => $user,
         ]);
     }
 }

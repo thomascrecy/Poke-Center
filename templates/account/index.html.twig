@@ -1,20 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AccountController!{% endblock %}
+{% block title %}Mon compte{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <h1>Bienvenue, {{ user.username }}</h1>
+    <p>Email: {{ user.email }}</p>
+    <p>Compte créé le : {{ user.createdAt|date('d/m/Y H:i') }}</p>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Yanice/Code/Poke-Center/src/Controller/AccountController.php</code></li>
-        <li>Your template at <code>C:/Yanice/Code/Poke-Center/templates/account/index.html.twig</code></li>
-    </ul>
-</div>
+    <a href="{{ path('app_logout') }}">Se déconnecter</a>
 {% endblock %}
+{% if app.user %}
+    <a href="{{ path('account') }}">Mon compte</a>
+{% else %}
+    <a href="{{ path('app_login') }}">Se connecter</a>
+{% endif %}
