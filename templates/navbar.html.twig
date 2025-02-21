@@ -24,11 +24,20 @@
 					<img src="/images/cart.png" alt="egg" class="nav-icon" style="width: auto; height: 30px; margin-right: 3px; vertical-align: middle;"> Panier
 				</a>
 			</li>
-			<li class="{% if app.request.getPathInfo() == '/login' %}active{% endif %}">
-				<a href="/login">
-					<img src="/icons/trainer.png" alt="trainer" class="nav-icon" style="width: auto; height: 30px; margin-right: 3px; vertical-align: middle;">Compte
-				</a>
-			</li>
+
+			{% if app.user %}
+				<li class="{% if app.request.getPathInfo() == '/account' %}active{% endif %}">
+					<a href="/account">
+						<img src="/icons/trainer.png" alt="trainer" class="nav-icon" style="width: auto; height: 30px; margin-right: 3px; vertical-align: middle;">Compte
+					</a>
+				</li>
+			{% else %}
+				<li class="{% if app.request.getPathInfo() == '/login' %}active{% endif %}">
+					<a href="/login">
+						<img src="/icons/trainer.png" alt="trainer" class="nav-icon" style="width: auto; height: 30px; margin-right: 3px; vertical-align: middle;">Se connecter
+					</a>
+				</li>
+            {% endif %}
 		</ul>
 	</div>
 </nav>
