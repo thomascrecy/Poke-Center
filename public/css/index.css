@@ -1,23 +1,29 @@
 * {
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-    list-style: none;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
 }
 
-a, a:visited {
+a,
+a:visited {
   color: inherit;
   text-decoration: none;
 }
 
-  
 body {
-  font-family: 'Poppins';
+  font-family: "Poppins", sans-serif;
+  background-color: #fff6ff;
+  text-align: center;
 }
 
 header {
   height: 15vh;
   width: 100vw;
+}
+
+footer {
+  padding-top: 50px;
 }
 
 .logo img {
@@ -34,13 +40,15 @@ header {
   width: 100%;
   height: 50px;
   box-sizing: border-box;
-  background-color: #B48BBD;
+  background-color: #b48bbd;
+  border-bottom: 3px solid #000;
 }
 
 .navbar a {
   font-weight: bold;
   text-decoration: none;
   color: white;
+  font-size: 20px;
 }
 
 .navbar .logo {
@@ -59,7 +67,7 @@ header {
 }
 
 .navbar .nav-links ul li.active a {
-  color: #5A4A9C;
+  color: #5a4a9c;
 }
 
 .nav-icon {
@@ -169,4 +177,101 @@ content p {
   color: black;
   font-weight: normal;
   font-size: 1.2em;
+}
+
+main p {
+  color: black;
+  font-weight: normal;
+  font-size: 1.2em;
+}
+
+.hero {
+  padding: 50px;
+  color: black;
+}
+
+.hero-items {
+  padding: 50px;
+  color: black;
+  display: flex;
+  align-items: flex-start;
+}
+
+.hero .btn {
+  background-color: red;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.categories {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.category {
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.product-list {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.featured-pokemon {
+  width: 100%;
+  text-align: center;
+  background-color: #fff;
+  padding: 20px 0;
+  margin-top: 20px;
+  border-top: 3px solid #000;
+  border-bottom: 3px solid #000;
+}
+
+.featured-pokemon h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.pokemon-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.pokemon-card:hover {
+  transform: scale(1.1);
+}
+
+.pokemon-card p {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+  text-transform: capitalize;
+}
+
+.item-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.item-card {
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  width: 200px;
+}
+
+.item-card img {
+  width: 100px;
+  height: 100px;
 }
