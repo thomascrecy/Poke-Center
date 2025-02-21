@@ -1,20 +1,32 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Poké Center - Panier</title>
+		<link rel="icon" type="images/favicon.ico" href="/images/favicon.ico">
+		<link rel="stylesheet" href="css/index.css">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<header>
+			{% include 'navbar.html.twig' %}
+		</header>
+		<content>
+			<h1>
+				Cart Page
+			</h1>
 
-{% block title %}Hello AccountController!{% endblock %}
+            {% if app.user %}
+                <p>You are logged in as {{ app.user.userIdentifier }}</p>
+                <a href="{{ path('app_logout') }}">Logout</a>
+            {% endif %}
+		</content>
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Yanice/Code/Poke-Center/src/Controller/AccountController.php</code></li>
-        <li>Your template at <code>C:/Yanice/Code/Poke-Center/templates/account/index.html.twig</code></li>
-    </ul>
-</div>
-{% endblock %}
+		<footer>
+			{% include 'footer.html.twig' %}
+		</footer>
+	</body>
+</html>
