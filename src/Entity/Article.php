@@ -50,6 +50,10 @@ class Article
     #[ORM\ManyToMany(targetEntity: Cart::class, mappedBy: 'article_id')]
     private Collection $carts;
 
+    #[ORM\ManyToOne(inversedBy: 'articles')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Category $category = null;
+
     public function __construct()
     {
         $this->types = new ArrayCollection();
@@ -197,6 +201,18 @@ class Article
         if ($this->carts->removeElement($cart)) {
             $cart->removeArticleId($this);
         }
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): static
+    {
+        $this->category = $category;
 
         return $this;
     }

@@ -4,24 +4,24 @@
 	</a>
 	<div class="nav-links">
 		<ul>
-			<li class="{% if app.request.getPathInfo() == '/articles' %}active{% endif %}">
-				<a href="/articles">
-					<img src="/icons/pikachu.png" alt="Pokémons" class="nav-icon" style="width: auto; height: 30px; margin-right: 3px; vertical-align: middle;">Pokémons
+			<li class="{% if app.request.getPathInfo() == '/articles?category=1' %}active{% endif %}">
+				<a href="/articles?category=1">
+					<img src="/icons/pikachu.png" alt="Illustration de pikachu" class="nav-icon" style="width: auto; height: 30px; margin-right: 3px; vertical-align: middle;">Pokémons
 				</a>
 			</li>
-			<li class="{% if app.request.getPathInfo() == '/items' %}active{% endif %}">
-				<a href="/items">
-					<img src="/icons/item_0017.png" alt="item" class="nav-icon" style="width: auto; height: 30px; margin-right: 3px; vertical-align: middle;">Objets
+			<li class="{% if app.request.getPathInfo() == '/articles?category=2' %}active{% endif %}">
+				<a href="/articles?category=2">
+					<img src="/icons/item_0017.png" alt="Illustration d'un objet pokémon" class="nav-icon" style="width: auto; height: 30px; margin-right: 3px; vertical-align: middle;">Objets
 				</a>
 			</li>
 			<li class="{% if app.request.getPathInfo() == '/sell' %}active{% endif %}">
 				<a href="/sell">
-					<img src="/images/sell.png" alt="egg" class="nav-icon" style="width: auto; height: 30px; margin-right: 3px; vertical-align: middle;"> Vendre
+					<img src="/images/sell.png" alt="Illustration d'un bourse d'argent" class="nav-icon" style="width: auto; height: 30px; margin-right: 3px; vertical-align: middle;"> Vendre
 				</a>
 			</li>
 			<li class="{% if app.request.getPathInfo() == '/cart' %}active{% endif %}">
 				<a href="/cart">
-					<img src="/images/cart.png" alt="egg" class="nav-icon" style="width: auto; height: 30px; margin-right: 3px; vertical-align: middle;"> Panier
+					<img src="/images/cart.png" alt="Illustration d'un panier" class="nav-icon" style="width: auto; height: 30px; margin-right: 3px; vertical-align: middle;"> Panier
 				</a>
 			</li>
 
@@ -35,6 +35,13 @@
 				<li class="{% if app.request.getPathInfo() == '/login' %}active{% endif %}">
 					<a href="/login">
 						<img src="/icons/trainer.png" alt="trainer" class="nav-icon" style="width: auto; height: 30px; margin-right: 3px; vertical-align: middle;">Se connecter
+					</a>
+				</li>
+            {% endif %}
+			{% if is_granted('ROLE_ADMIN') %}
+				<li class="{% if app.request.getPathInfo() == '/admin' %}active{% endif %}">
+					<a href="/admin">
+						<img src="/icons/trainer.png" alt="trainer" class="nav-icon" style="width: auto; height: 30px; margin-right: 3px; vertical-align: middle;">Admin
 					</a>
 				</li>
             {% endif %}

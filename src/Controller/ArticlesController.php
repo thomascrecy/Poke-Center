@@ -3,23 +3,35 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Category;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ArticlesController extends AbstractController
 {
     #[Route('/articles', name: 'get_articles', methods: ['GET'])]
-    public function getAllArticles(EntityManagerInterface $entityManager): Response
+    public function getAllArticles(Request $request, EntityManagerInterface $entityManager): Response
     {
-        // Récupérer le repository de l'entité Article
+        $categoryId = $request->query->get('category');
+
         $articleRepository = $entityManager->getRepository(Article::class);
+        $categoryRepository = $entityManager->getRepository(Category::class);
 
-        // Récupérer tous les articles
-        $articles = $articleRepository->findAll();
+        if ($categoryId) {
+            $category = $categoryRepository->find($categoryId);
 
-        // Retourner les articles dans un template Twig
+            if (!$category) {
+                throw $this->createNotFoundException('Catégorie non trouvée');
+            }
+
+            $articles = $category->getArticles();
+        } else {
+            $articles = $articleRepository->findAll();
+        }
+
         return $this->render('articles/index.html.twig', [
             'articles' => $articles,
         ]);

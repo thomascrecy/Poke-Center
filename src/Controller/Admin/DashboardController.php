@@ -13,6 +13,7 @@ use App\Entity\Article;
 use App\Entity\Invoice;
 use App\Entity\Cart;
 use App\Entity\Stock;
+use App\Entity\Category;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -34,6 +35,7 @@ class DashboardController extends AbstractDashboardController
         return [
             MenuItem::linkToDashboard('Dashboard', 'fa fa-home'),
             MenuItem::linkToCrud('Utilisateurs', 'fa fa-users', User::class),
+            MenuItem::linkToCrud('Catégories', 'fa fa-list', Category::class),
             MenuItem::linkToCrud('Articles', 'fa fa-cookie-bite', Article::class),
             MenuItem::linkToCrud('Factures', 'fa fa-receipt', Invoice::class),
             MenuItem::linkToCrud('Paniers', 'fa fa-cart-shopping', Cart::class),

@@ -84,32 +84,6 @@ content {
   align-items: center;
 }
 
-.pkmn {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 100px;
-  max-width: 80%;
-  margin: 0 auto;
-}
-
-.pkmn .image-container {
-  width: 250px; /* Fixed width */
-  height: 250px; /* Fixed height */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.pkmn .image-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ensures images scale properly */
-  /* box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px; */
-  border-radius: 10px;
-  margin-top: 10px;
-}
-
 .balls {
   display: flex;
   flex-wrap: wrap;
@@ -117,49 +91,6 @@ content {
   gap: 100px;
   max-width: 80%;
   margin: 0 auto;
-}
-
-.balls .image-container {
-  width: 100px; /* Fixed width */
-  height: 100px; /* Fixed height */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 10px;
-}
-
-.balls .image-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ensures images scale properly */
-  /* box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px; */
-  border-radius: 10px;
-}
-
-.eggs {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 100px;
-  max-width: 80%;
-  margin: 0 auto;
-}
-
-.eggs .image-container {
-  width: 100px; /* Fixed width */
-  height: 100px; /* Fixed height */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 10px;
-}
-
-.eggs .image-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ensures images scale properly */
-  /* box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px; */
-  border-radius: 10px;
 }
 
 content a {
@@ -246,13 +177,34 @@ main p {
   flex-wrap: wrap;
 }
 
-.pokemon-card:hover {
-  transform: scale(1.1);
+
+.article-card {
+  transition: transform 0.1s ease;
+  cursor: pointer;
 }
 
-.pokemon-card p {
+.article-card:hover {
+  transform: scale(1.07);
+}
+
+.article-card .image-container {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.article-card .image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.article-card p {
   font-size: 16px;
-  font-weight: bold;
   margin-top: 10px;
   text-transform: capitalize;
 }
