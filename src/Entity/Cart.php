@@ -70,4 +70,15 @@ class Cart
 
         return $this;
     }
+
+    public function getTotalPrice(): float
+    {
+        $total = 0;
+
+        foreach ($this->getArticleId() as $article) {
+            $total += $article->getPrice();
+        }
+
+        return $total;
+    }
 }

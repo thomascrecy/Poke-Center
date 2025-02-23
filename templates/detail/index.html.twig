@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Poké Center - Panier</title>
+		<title>Poké Center - Article</title>
 		<link rel="icon" type="images/favicon.ico" href="/images/favicon.ico">
 		<link rel="stylesheet" href="{{ asset('css/index.css') }}">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,17 +15,28 @@
 			{% include 'navbar.html.twig' %}
 		</header>
 		<content>
-			<h1>
-				Detail Page
-			</h1>
+			<h1>Detail Page</h1>
 
-            <div class="image-container">
-                <img src="{{ asset('uploads/images/' ~ article.imageLink) }}" alt="image {{ article.name|e }}">
-            </div>
-            <h1>{{ article.name }}</h1>
-            <p>{{ article.description }}</p>
-            <p><strong>Publié le :</strong> {{ article.createdAt|date('d/m/Y') }}</p>
-            <button>Ajouter au panier</button>
+			<div class="image-container">
+				<img src="{{ asset('uploads/images/' ~ article.imageLink) }}" alt="image {{ article.name|e }}">
+			</div>
+
+			<h1>{{ article.name }}</h1>
+			<p>{{ article.description }}</p>
+			<p><strong>Publié le :</strong> {{ article.createdAt|date('d/m/Y') }}</p>
+
+			<!-- ✅ Formulaire pour ajouter au panier -->
+			<form action="{{ path('app_cart_add', { id: article.id }) }}" method="POST">
+				<button type="submit">Ajouter au panier</button>
+			</form>
+
+			<!-- 🔔 Messages flash pour afficher les retours -->
+			{% for message in app.flashes('success') %}
+				<p style="color: green;">{{ message }}</p>
+			{% endfor %}
+			{% for message in app.flashes('danger') %}
+				<p style="color: red;">{{ message }}</p>
+			{% endfor %}
 		</content>
 
 		<footer>

@@ -39,3 +39,4 @@ security:
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/account, roles: ROLE_USER }
         - { path: ^/sell, roles: ROLE_USER }
+        - { path: ^/cart, roles: ROLE_USER }
