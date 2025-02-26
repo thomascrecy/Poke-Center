@@ -15,33 +15,25 @@
 			{% include 'navbar.html.twig' %}
 		</header>
 		<content>
-			<h1>Detail Page</h1>
+			<h1>Modifier l'article : {{ article.name }}</h1>
 
 			<div class="image-container">
 				<img src="{{ asset('uploads/images/' ~ article.imageLink) }}" alt="image {{ article.name|e }}">
 			</div>
 
-			<h1>{{ article.name }}</h1>
-			<p>{{ article.description }}</p>
-			<p><strong>Publié le :</strong> {{ article.createdAt|date('d/m/Y') }}</p>
-
-			<!-- ✅ Formulaire pour ajouter au panier -->
-			<form action="{{ path('app_cart_add', { id: article.id }) }}" method="POST">
-				<button type="submit">Ajouter au panier</button>
+			<form method="post" enctype="multipart/form-data">
+				{{ form_start(form) }}
+				{{ form_row(form.category) }}
+				{{ form_row(form.name) }}
+				{{ form_row(form.description) }}
+				{{ form_row(form.price) }}
+				{{ form_row(form.imageFile) }}
+				<button type="submit" class="btn btn-primary">Enregistrer</button>
+				{{ form_end(form) }}
 			</form>
 
-			<!-- 🔔 Messages flash pour afficher les retours -->
-			{% for message in app.flashes('success') %}
-				<p style="color: green;">{{ message }}</p>
-			{% endfor %}
-			{% for message in app.flashes('danger') %}
-				<p style="color: red;">{{ message }}</p>
-			{% endfor %}
+			<a href="{{ path('app_detail', { 'id': article.id }) }}">Retour à l'article</a>
 
-
-			{% if can_edit %}
-				<a href="{{ path('app_edit', { 'id': article.id }) }}">Modifier l'article</a>
-			{% endif %}
 		</content>
 
 		<footer>
