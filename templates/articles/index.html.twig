@@ -18,13 +18,14 @@
 
 			<div class="pkmn" id="pokemon-container">
             {% for article in articles %}
-				<a href="detail/{{article.id}}">
+				<a href="detail/{{article.article.id}}">
 					<div class="article-card">
 						<div class="image-container">
-							<img src="{{ asset('uploads/images/' ~ article.imageLink) }}" alt="image {{ article.name|e }}">
+							<img src="{{ asset('uploads/images/' ~ article.article.imageLink) }}" alt="image {{ article.article.name|e }}">
 						</div>
-						<p>{{ article.name|e }}</p>
-						<p>{{ article.price|e }} ₽</p>
+						<p>{{ article.article.name|e }}</p>
+						<p>Restants: {{ article.stock|e }}</p>
+						<p>{{ article.article.price|e }} ₽</p>
 					</div>
 				</a>
             {% endfor %}

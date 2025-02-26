@@ -32,8 +32,18 @@ class ArticlesController extends AbstractController
             $articles = $articleRepository->findAll();
         }
 
+        $articlesWithStock = [];
+        foreach ($articles as $article) {
+            $stock = $article->getStock();
+
+            $articlesWithStock[] = [
+                'article' => $article,
+                'stock' => $stock ? $stock->getAmount() : 0,
+            ];
+        }
+
         return $this->render('articles/index.html.twig', [
-            'articles' => $articles,
+            'articles' => $articlesWithStock,
         ]);
     }
 }

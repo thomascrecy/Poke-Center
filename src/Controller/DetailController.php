@@ -24,12 +24,15 @@ final class DetailController extends AbstractController
             throw $this->createNotFoundException('Article non trouvé');
         }
 
-        // Vérifier si l'utilisateur connecté est l'auteur de l'article
-        $user = $this->getUser(); // Utilisation de getUser() pour récupérer l'utilisateur
+        $user = $this->getUser();
         $canEdit = $user && $user->getId() === $article->getAuthorId()->getId();
+
+        $stock = $article->getStock();
+        $stock = $stock ? $stock->getAmount() : 0;
 
         return $this->render('detail/index.html.twig', [
             'article' => $article,
+            'stock' => $stock,
             'can_edit' => $canEdit, // Transmettre la variable pour l'affichage dans la vue
         ]);
     }

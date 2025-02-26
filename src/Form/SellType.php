@@ -3,16 +3,16 @@
 namespace App\Form;
 
 use App\Entity\Article;
-use App\Entity\Cart;
 use App\Entity\Stock;
-use App\Entity\Type;
-use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Validator\Constraints\Positive;
+use Symfony\Component\Validator\Constraints\GreaterThan;
 use App\Entity\Category;
 
 class SellType extends AbstractType
@@ -29,10 +29,25 @@ class SellType extends AbstractType
             ->add('name')
             ->add('description')
             ->add('price')
+            ->add('amount', IntegerType::class, [
+                'label' => 'Quantité',
+                'mapped' => false,
+                'required' => true,
+                'data' => 1,
+                'constraints' => [
+                    new Positive([
+                        'message' => 'La quantité doit être un nombre positif.',
+                    ]),
+                    new GreaterThan([
+                        'value' => 1,
+                        'message' => 'La quantité doit être supérieure à 1.',
+                    ])
+                ],
+            ])
             ->add('imageFile', FileType::class, [
                 'label' => 'Image de l\'article',
                 'mapped' => false,
-                'required' => false,
+                'required' => true,
                 'constraints' => [
                     new File([
                         'maxSize' => '2M',

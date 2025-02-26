@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\Stock;
 use App\Form\SellType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,19 +34,25 @@ final class SellController extends AbstractController
 
                 try {
                     $imageFile->move(
-                        $this->getParameter('images_directory'), // Défini dans services.yaml
+                        $this->getParameter('images_directory'),
                         $newFilename
                     );
                 } catch (FileException $e) {
                     throw new \Exception('Erreur lors de l\'upload de l\'image.');
                 }
 
-                $newArticle->setImageLink($newFilename); // Sauvegarde le chemin du fichier
+                $newArticle->setImageLink($newFilename);
             }
+
             $newArticle->setAuthorId($this->getUser());
             $newArticle->setCreatedAt(new \DateTimeImmutable());
 
+            $stock = new Stock();
+            $stock->setAmount($form->get('amount')->getData());
+            $stock->setArticleId($newArticle);
+
             $entityManager->persist($newArticle);
+            $entityManager->persist($stock);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_account');
