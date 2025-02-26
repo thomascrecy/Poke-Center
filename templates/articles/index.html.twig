@@ -15,10 +15,8 @@
 			{% include 'navbar.html.twig' %}
 		</header>
 		<content>
-			<h1>
-				Cart Page
-			</h1>
 
+			<div class="pkmn" id="pokemon-container">
             {% for article in articles %}
 				<a href="detail/{{article.id}}">
 					<div class="article-card">
@@ -30,7 +28,7 @@
 					</div>
 				</a>
             {% endfor %}
-
+			</div>
 		</content>
 
 		<footer>

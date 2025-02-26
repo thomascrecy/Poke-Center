@@ -170,17 +170,22 @@ main p {
   margin-bottom: 20px;
 }
 
-.pokemon-container {
-  display: flex;
+#pokemon-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 3 cards per row */
+  gap: 100px; /* Space between the cards */
   justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
 }
 
 
 .article-card {
   transition: transform 0.1s ease;
   cursor: pointer;
+  flex: 1 0;
+  box-sizing: border-box;
+  margin-bottom: 15px; /* Space between rows */
+  height: 100px;
+  width: auto;
 }
 
 .article-card:hover {
