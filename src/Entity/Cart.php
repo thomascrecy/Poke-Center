@@ -25,9 +25,13 @@ class Cart
     #[ORM\ManyToMany(targetEntity: Article::class, inversedBy: 'carts')]
     private Collection $article_id;
 
+    #[ORM\Column]
+    private ?int $stock = null;
+
     public function __construct()
     {
         $this->article_id = new ArrayCollection();
+        $this->stock = 1;
     }
 
     public function getId(): ?int
@@ -80,5 +84,17 @@ class Cart
         }
 
         return $total;
+    }
+
+    public function getStock(): ?int
+    {
+        return $this->stock;
+    }
+
+    public function setStock(int $stock): static
+    {
+        $this->stock = $stock;
+
+        return $this;
     }
 }
