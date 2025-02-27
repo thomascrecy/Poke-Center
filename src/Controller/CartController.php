@@ -2,12 +2,16 @@
 
 namespace App\Controller;
 
+// src/Controller/CartController.php
+
+namespace App\Controller;
+
 use App\Entity\Cart;
 use App\Entity\Article;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 final class CartController extends AbstractController
@@ -48,4 +52,29 @@ final class CartController extends AbstractController
 
         return $this->redirectToRoute('app_cart');
     }
+
+    #[Route('/cart/remove/{id}', name: 'app_cart_remove', methods: ['POST'])]
+    public function removeFromCart(int $id, UserInterface $user, EntityManagerInterface $entityManager): Response
+    {
+        $cart = $user->getCart();
+
+        if (!$cart) {
+            $this->addFlash('danger', 'Le panier n\'existe pas.');
+            return $this->redirectToRoute('app_cart');
+        }
+
+        $article = $entityManager->getRepository(Article::class)->find($id);
+
+        if (!$article) {
+            $this->addFlash('danger', 'L\'article n\'existe pas.');
+            return $this->redirectToRoute('app_cart');
+        }
+
+        $cart->removeArticleId($article);
+        $entityManager->persist($cart);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_cart');
+    }
 }
+

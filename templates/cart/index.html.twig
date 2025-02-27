@@ -27,6 +27,9 @@
 							<img src="{{ asset('uploads/images/' ~ article.imageLink) }}" alt="image {{ article.name|e }}">
 						</div>
 						<p>{{ article.name }} - {{ article.price }}€</p>
+						<form action="{{ path('app_cart_remove', {id: article.id}) }}" method="post" style="display:inline;">
+							<button type="submit" class="btn btn-danger">Supprimer</button>
+						</form>
 					</li>
 					{% endfor %}
 				</ul>
