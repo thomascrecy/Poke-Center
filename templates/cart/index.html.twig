@@ -19,6 +19,14 @@
 				Cart Page
 			</h1>
 
+			{% for label, messages in app.flashes %}
+				<div class="flash-{{ label }}">
+					{% for message in messages %}
+						<p>{{ message }}</p>
+					{% endfor %}
+				</div>
+			{% endfor %}
+
 			{% if articles is not empty %}
 				<ul>
 					{% for article in articles %}
@@ -38,7 +46,9 @@
 				<p>Votre panier est vide.</p>
 			{% endif %}
 
-
+			<form action="{{ path('app_cart_validate') }}" method="post">
+				<button type="submit">Valider le panier</button>
+			</form>
 		</content>
 
 		<footer>
