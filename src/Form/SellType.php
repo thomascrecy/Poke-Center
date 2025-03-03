@@ -26,11 +26,15 @@ class SellType extends AbstractType
                 'placeholder' => 'Choisissez une catégorie',
                 'choice_value' => 'id',
             ])
-            ->add('name')
+            ->add('name', null, [
+                'label' => 'Nom de l\'article',
+            ])
             ->add('description')
-            ->add('price')
+            ->add('price', null, [
+                'label' => 'Prix',
+            ])
             ->add('amount', IntegerType::class, [
-                'label' => 'Quantité',
+                'label' => 'Quantité  ',
                 'mapped' => false,
                 'required' => true,
                 'data' => 1,
@@ -39,8 +43,8 @@ class SellType extends AbstractType
                         'message' => 'La quantité doit être un nombre positif.',
                     ]),
                     new GreaterThan([
-                        'value' => 1,
-                        'message' => 'La quantité doit être supérieure à 1.',
+                        'value' => 0,
+                        'message' => 'La quantité doit être au moins de 1.',
                     ])
                 ],
             ])

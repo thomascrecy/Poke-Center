@@ -8,42 +8,41 @@
 		<link rel="stylesheet" href="{{ asset('css/index.css') }}">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 	</head>
 	<body>
-		<header>
+		<header >
 			{% include 'navbar.html.twig' %}
 		</header>
-		<content>
-			<h1>Detail Page</h1>
+		<main class="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-6">
+			<h1 class="text-2xl font-bold mb-4">{{ article.name }}</h1>
 
-			<div class="image-container">
-				<img src="{{ asset('uploads/images/' ~ article.imageLink) }}" alt="image {{ article.name|e }}">
+			<div class="flex flex-col items-center">
+				<div class="w-64 h-64 overflow-hidden rounded-lg shadow-md mb-4">
+					<img src="{{ asset('uploads/images/' ~ article.imageLink) }}" alt="{{ article.name|e }}" class="w-full h-full object-cover">
+				</div>
+				<p class="text-lg text-gray-700 mb-2">{{ article.description }}</p>
+				<p class="font-semibold text-gray-600">Restant: {{ stock }}</p>
+				<p class="text-sm text-gray-500">Publié le : {{ article.createdAt|date('d/m/Y') }}</p>
 			</div>
 
-			<h1>{{ article.name }}</h1>
-			<p>{{ article.description }}</p>
-			<p>Restant: {{ stock }}</p>
-			<p><strong>Publié le :</strong> {{ article.createdAt|date('d/m/Y') }}</p>
-
-			<!-- ✅ Formulaire pour ajouter au panier -->
-			<form action="{{ path('app_cart_add', { id: article.id }) }}" method="POST">
-				<button type="submit">Ajouter au panier</button>
+			<form action="{{ path('app_cart_add', { id: article.id }) }}" method="POST" class="mt-4">
+				<button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">Ajouter au panier</button>
 			</form>
 
-			<!-- 🔔 Messages flash pour afficher les retours -->
-			{% for message in app.flashes('success') %}
-				<p style="color: green;">{{ message }}</p>
-			{% endfor %}
-			{% for message in app.flashes('danger') %}
-				<p style="color: red;">{{ message }}</p>
-			{% endfor %}
-
+			<div class="mt-4">
+				{% for message in app.flashes('success') %}
+					<p class="text-green-500">{{ message }}</p>
+				{% endfor %}
+				{% for message in app.flashes('danger') %}
+					<p class="text-red-500">{{ message }}</p>
+				{% endfor %}
+			</div>
 
 			{% if can_edit %}
-				<a href="{{ path('app_edit', { 'id': article.id }) }}">Modifier l'article</a>
+				<a href="{{ path('app_edit', { 'id': article.id }) }}" class="inline-block mt-4 text-blue-600 hover:underline">Modifier l'article</a>
 			{% endif %}
-		</content>
+		</main>
 
 		<footer>
 			{% include 'footer.html.twig' %}
